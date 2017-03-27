@@ -63,16 +63,16 @@ public class CustomerTest {
         String name = "LFG7854";
         assertEquals("Check to see equal", name, c1.getLicense());
     }
-    /*@Test
+    @Test
     public void getCustomer() {
          Customer c1 = new Customer("Migliori", "Samantha","migliorise@gmail.com", "LFG7854");
 
         String name = "Last Name: " + "Migliori" + " First Name: " + "Samantha"
                 + "\nEmail Address: " + "migliorise@gmail.com"
-                + "\nPlates on File: " + "LFG7854";
+                + "\nPlates on File: " + "[LFG7854, KADKFJD, klajdf]";
       
        
         assertEquals("Check to see equal", name, c1.getCustomer());
-    }*/
+    }
     
 }
