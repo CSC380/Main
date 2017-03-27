@@ -9,9 +9,7 @@ private List<Employee> employeeParking = new ArrayList<>();
 
 private Customer customer;
 private Valet valet;
-private StoreAssociate storeAssociate;
 private SecurityGuard securityGuard;
-private StoreManager storeManager;
 private GarageManager garageManager;
 
 public Garage() {
