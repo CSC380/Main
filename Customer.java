@@ -9,8 +9,6 @@ private String emailAddress;
 private String licensePlate;
 
 private List<String> licensePlates = new ArrayList<>();
-private List<String> raffleTickets = new ArrayList<>();
-private List<Food> myCart = new ArrayList<>();
 
 private Garage myVehicle;
 public Customer(String lastN, String firstN, String email, String license) {
@@ -24,24 +22,6 @@ licensePlates.add(licensePlate);
 
 }
 
-public boolean addToCart(Food food) {
-
-return myCart.add(food);
-}
-
-public List showMyCart() {
-
-return myCart;
-}
-
-public double cartPrice() {
-
-double total = 0;
-for (Food a : myCart) {
-	total = total + a.price;
-}
-return total;
-}
 
 public  boolean addLicense(String license) {
 return licensePlates.add(license);
