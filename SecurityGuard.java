@@ -26,9 +26,7 @@ return stateOfGate ? "open" : "closed";
 
 public void setMainGateWorker(SecurityGuard mgw) {
 
-if (sc == null) {
-	sc = new SecurityGuard(mgw.getLastName(), mgw.getFirstName(),mgw.getID(),mgw.getPhoneNumber());
-}
+sc = mgw;
 }
 
 public SecurityGuard getMainGateEMP() {

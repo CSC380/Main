@@ -6,10 +6,7 @@ public class GarageManager extends Employee {
 private final double salary = 120000;
 private Customer customerInfo;
 private Valet valetInfo;
-private StoreAssociate storeAssociateInfo;
 private SecurityGuard securityGuardInfo;
-private StoreManager storeManagerInfo;
-
 private List<Customer> numOfCustomers = new ArrayList<>();
 private List<Employee> numOfEmployeeParking = new ArrayList<>();
 public GarageManager(String last, String first, String id, String phone) {
@@ -53,15 +50,6 @@ public Valet getValet() {
 return valetInfo;
 }
 
-public void setStoreAssociate(StoreAssociate sa) {
-
-storeAssociateInfo = sa;
-}
-
-public StoreAssociate getStoreAssociate() {
-
-return storeAssociateInfo;
-}
 
 public void setSecurityGuard(SecurityGuard sg) {
 
@@ -71,16 +59,6 @@ securityGuardInfo = sg;
 public SecurityGuard getSecurityGuard() {
 
 return securityGuardInfo;
-}
-
-public void setStoreManager(StoreManager sm) {
-
-storeManagerInfo = sm;
-}
-
-public StoreManager getStoreManager() {
-
-return storeManagerInfo;
 }
 
 public String scanLicensePlate(String licenseNum) {
