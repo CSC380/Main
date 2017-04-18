@@ -7,8 +7,10 @@ public class Customer {
 private String lastName, firstName;
 private String emailAddress;
 private String licensePlate;
+private double pay;
 
 private List<String> licensePlates = new ArrayList<>();
+private List<String> raffleTickets = new ArrayList<>();
 
 private Garage myVehicle;
 public Customer(String lastN, String firstN, String email, String license) {
@@ -19,9 +21,18 @@ emailAddress = email;
 licensePlate = license;
 licensePlates.add(licensePlate);
 
-
 }
 
+
+public double getPay() {
+
+return pay;
+}
+
+public void setPay(double p) {
+
+pay = p;
+}
 
 public  boolean addLicense(String license) {
 return licensePlates.add(license);
@@ -80,14 +91,6 @@ return getCustomer();
 public static void main(String[] args) {
 
 Customer c = new Customer("lone","wolf","loneWolf@gmail.com","thanks325");
-Food food = null;
-
-c.addToCart(food.Soda);
-c.addToCart(food.Candy);
-c.addToCart(food.Cake);
-
-System.out.println(c.showMyCart());
-System.out.println(c.cartPrice());
 
 }
 

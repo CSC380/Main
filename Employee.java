@@ -40,6 +40,7 @@ public String getEmployeeInfo() {
 return "Name:  " + lastName + ", " + firstName + "\tId Number: " + idNumber + "  Phone Number: " + phoneNumber;
 }
 
+
 @Override
 public String toString() {
 
@@ -48,6 +49,7 @@ return getEmployeeInfo();
 
 public abstract String printPayCheck();
 public abstract double calculatePayCheck();
+//public abstract Customer searchCustomer(String name);
 
 
 

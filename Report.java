@@ -3,9 +3,10 @@ import java.util.*;
 
 public class Report {
 
+
 private String month, day, year;
 private String reportInfo;
-private double payRoll;
+private double payRoll,custPay;
 private List<Report> reportList = new ArrayList<>();
 
 public Report(String mo, String d, String y) {
@@ -53,38 +54,43 @@ public List getListOfReports() {
 return reportList;
 }
 
-/*public void searchReportInfo(String month, String day, String year) {
-
-Report [] temp = new Report[reportList.size()];
-temp = reportList.toArray(temp);
-
-for (Report rp: temp) {
-	if (rp.getMonth().equalsIgnoreCase(month)) {
-		if (rp.getDay().equalsIgnoreCase(day)) {
-			if (rp.getYear().equalsIgnoreCase(year)) {
-System.out.println("Report for " + month + " " + day + " " + year + "\n"+ rp.getInfo());
-				}
-			}
-		}
-	}
-}
-*/
 
 public void displayReport() {
 
 System.out.println("Report for " + this.getMonth() + " " + this.getDay() + " " + this.getYear() + "\n"+ this.getInfo());
 }
-public void payRollSetUp(Employee empPay) {
 
-double temp = empPay.calculatePayCheck();
-payRoll = payRoll + temp;
+public void displayFinances(Employee[] emps, Customer[] customers) {
+
+double finance;
+double custIncome;
+finance = payRollSetUp(emps);
+custIncome = customerPay(customers);
+
+System.out.println("PayRoll Overhead " + finance + "\nIncome " + custIncome);
 }
 
-public double payPeriod(GarageManager gm) {
+public double payRollSetUp(Employee[] emp) {
+
+double temp;
+for (int i = 0; i< emp.length; i++) {
+	temp = emp[i].calculatePayCheck();
+	payRoll = payRoll + temp;
+}
 
 return payRoll;
 }
 
+public double customerPay(Customer[] customers) {
+
+double temp;
+for (int i = 0; i< customers.length; i++) {
+	temp = customers[i].getPay();
+	custPay = custPay + temp;
+}
+
+return custPay;
+}
 
 public static void main(String[] args) {
 
@@ -110,7 +116,30 @@ a1.addReport(b);
 a1.addReport(c);
 a1.addReport(d);
 
+Customer c2 = new Customer("Migs", "Tori", "khttgfdb@gmail.com", "hdu7364");
+Customer b2 = new Customer("M", "Ti", "khdb@gmail.com", "h017364");
+Customer d2 = new Customer("g", "miles", "kmsnnngfdb@gmail.com", "hdu09opl64");
+
+c2.setPay(79);
+b2.setPay(3000);
+d2.setPay(40);
+
+SecurityGuard g = new SecurityGuard("wolf", "lone", "90yftvsh", "9786254432");
+Valet v1 = new Valet("Jones", "Karl", "0192837465", "9144434651");
+
+a1.addCustToList(c2);
+a1.addCustToList(b2);
+a1.addCustToList(d2);
+
+g.setHoursWorked(10);
+v1.setHoursWorked(20);
+
+a1.addStaff(g);
+a1.addStaff(v1);
+a1.addStaff(a1);
+
 a1.searchReportInfo("March","10","1990");
+a.displayFinances(a1.getStaff(),a1.listOfCustomers());
 }
 
 

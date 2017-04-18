@@ -1,9 +1,9 @@
-
 import java.util.*;
 
 public class GarageManager extends Employee {
 
 private final double salary = 120000;
+
 private Customer customerInfo;
 private Valet valetInfo;
 private SecurityGuard securityGuardInfo;
@@ -13,6 +13,7 @@ private List<Customer> numOfCustomers = new ArrayList<>();
 private List<Employee> numOfEmployeeParking = new ArrayList<>();
 private List<Employee> staffMembers = new ArrayList<>();
 private List<Report> reports = new ArrayList<>();
+private String [] schedule = new String[7];
 
 public GarageManager(String last, String first, String id, String phone) {
 
@@ -66,6 +67,12 @@ System.out.println(staffMembers);
 public Customer[] listOfCustomers() {
 
 Customer [] temp = numOfCustomers.toArray(new Customer[numOfCustomers.size()]);
+return temp;
+}
+
+public Employee[] getStaff() {
+
+Employee[] temp = staffMembers.toArray(new Employee[staffMembers.size()]); 
 return temp;
 }
 
@@ -161,11 +168,30 @@ for (Customer cust: numOfCustomers) {
 }
 return "That customer does not exist inside the database";
 }
-public static void main(String[] args) {
 
+public void setSchedule(String mon, String tues, String wed, String thurs, String fri, String sat, String sun) {
+
+schedule[0] = "Monday - " + mon;
+schedule[1] = "Tuesday - " + tues;
+schedule[2] = "Wednesday - " + wed;
+schedule[3] = "Thursday - " + thurs;
+schedule[4] = "Friday - " + fri;
+schedule[5] = "Saturday - " + sat;
+schedule[6] = "Sunday - " + sun;
+}
+
+public void displaySchedule() {
+
+for (int i = 0; i < schedule.length; i++) {
+	System.out.println(schedule[i]);
+}
+
+}
+public static void main(String[] args) {
+/*
 GarageManager a = new GarageManager("tom","hanks","23hiop","71602903838");
 a.addStaff(a);
-/*
+
 Customer c = new Customer("Migs", "Tori", "khttgfdb@gmail.com", "hdu7364");
 Customer b = new Customer("M", "Ti", "khdb@gmail.com", "h017364");
 Customer d = new Customer("g", "miles", "kmsnnngfdb@gmail.com", "hdu09opl64");
@@ -182,8 +208,8 @@ System.out.println(a.printPayCheck());
 System.out.println(a.getPhoneNumber());
 a.setCustomer(c);
 System.out.println(a.getCustomer().toString());
-*/
 System.out.println(a.scanID("23hiop"));
+*/
 
 }
 
