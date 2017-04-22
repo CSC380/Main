@@ -1,0 +1,6 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Garage>
+   <Customer firstName="Terrence" lastName="Malone" emailAddress="Tmoney@Gmail.com" licensePlate="rxm-726" />
+   <Employee type="GarageManager" firstName="Mark" lastName="Jackson" idNumber="65490811" phoneNumber="646-555-5555" />
+</Garage>

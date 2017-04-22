@@ -2,24 +2,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SearchCustomer {
+public class SearchStaff {
 
-static JLabel custName;
-static JTextField custNameTextField;
-static JLabel displayCustInfo;
+static JLabel staffName;
+static JTextField staffNameTextField;
+static JLabel displayStaffInfo;
 static JButton searchButton;
 static JButton mainMenuButton;
 static JFrame search;
 static JPanel searchPanel;
 
-public SearchCustomer() {
+public SearchStaff() {
 
 createGUI();
 }
 
 public static void createGUI() {
 
-search = new JFrame("Search Customer");
+search = new JFrame("Search Staff");
 search.setSize(600,600);
 search.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -34,17 +34,17 @@ public static void placeComponents(JPanel panel) {
 
 panel.setLayout(null);
 
-custName = new JLabel("Customers Name");
-custName.setBounds(30,60,150,50);
-panel.add(custName);
+staffName = new JLabel("Staff Members Name");
+staffName.setBounds(30,60,150,50);
+panel.add(staffName);
 
-custNameTextField = new JTextField();
-custNameTextField.setBounds(170,70,160,30);
-panel.add(custNameTextField);
+staffNameTextField = new JTextField();
+staffNameTextField.setBounds(195,70,160,30);
+panel.add(staffNameTextField);
 
-displayCustInfo = new JLabel("meow");
-//displayCustInfo.setBounds(80,130,100,100);
-panel.add(displayCustInfo);
+displayStaffInfo = new JLabel("meow");
+//displayStaffInfo.setBounds(80,130,100,100);
+panel.add(displayStaffInfo);
 
 searchButton = new JButton("Search");
 searchButton.setBounds(150,450,100,50);
