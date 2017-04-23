@@ -52,7 +52,7 @@ public class Main {
 
 		//gms.printCustomerList();
 		gms.showStaff();
-
+do{
 		new LoginScreen();
 
 	 	LoginScreen.loginButton.addActionListener(new ActionListener() {
@@ -256,6 +256,6 @@ for (int i = 0; i < emp.length; i++) {
 // add garage methods to combo box
 // search employee
 // create new staff
-
+    } while (!LoginScreen.closeButton.getActionListener());
 }
 
