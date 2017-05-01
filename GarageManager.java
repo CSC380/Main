@@ -1,9 +1,9 @@
-
 import java.util.*;
 
 public class GarageManager extends Employee {
 
 private final double salary = 120000;
+
 private Customer customerInfo;
 private Valet valetInfo;
 private SecurityGuard securityGuardInfo;
@@ -13,10 +13,11 @@ private List<Customer> numOfCustomers = new ArrayList<>();
 private List<Employee> numOfEmployeeParking = new ArrayList<>();
 private List<Employee> staffMembers = new ArrayList<>();
 private List<Report> reports = new ArrayList<>();
+private String [] schedule = new String[7];
 
-public GarageManager(String last, String first, String id, String phone) {
+public GarageManager(String last, String first, String id, String phone, String pw) {
 
-super(last,first,id,phone);
+super(last,first,id,phone,pw);
 }
 
 public boolean addReport(Report rp) {
@@ -55,6 +56,7 @@ for (Report rp: temp) {
 
 public boolean addStaff(Employee o) {
 
+
 return staffMembers.add(o);
 }
 
@@ -66,6 +68,12 @@ System.out.println(staffMembers);
 public Customer[] listOfCustomers() {
 
 Customer [] temp = numOfCustomers.toArray(new Customer[numOfCustomers.size()]);
+return temp;
+}
+
+public Employee[] getStaff() {
+
+Employee[] temp = staffMembers.toArray(new Employee[staffMembers.size()]); 
 return temp;
 }
 
@@ -161,30 +169,59 @@ for (Customer cust: numOfCustomers) {
 }
 return "That customer does not exist inside the database";
 }
+
+public String searchEmployee(String name) {
+
+for (Employee em : staffMembers) {
+	if (em.getName().equalsIgnoreCase(name)) {
+		return em.getEmployeeInfo();
+	}
+}
+return "That Employee does not exist inside the database";
+}
+
+public void setSchedule(String mon, String tues, String wed, String thurs, String fri, String sat, String sun) {
+
+schedule[0] = "Monday - " + mon;
+schedule[1] = "Tuesday - " + tues;
+schedule[2] = "Wednesday - " + wed;
+schedule[3] = "Thursday - " + thurs;
+schedule[4] = "Friday - " + fri;
+schedule[5] = "Saturday - " + sat;
+schedule[6] = "Sunday - " + sun;
+}
+
+public void displaySchedule() {
+
+for (int i = 0; i < schedule.length; i++) {
+	System.out.println(schedule[i]);
+}
+
+}
 public static void main(String[] args) {
 
-GarageManager a = new GarageManager("tom","hanks","23hiop","71602903838");
+GarageManager a = new GarageManager("tom","hanks","23hiop","71602903838","kfgjbjbmj");
 a.addStaff(a);
-/*
+
 Customer c = new Customer("Migs", "Tori", "khttgfdb@gmail.com", "hdu7364");
 Customer b = new Customer("M", "Ti", "khdb@gmail.com", "h017364");
 Customer d = new Customer("g", "miles", "kmsnnngfdb@gmail.com", "hdu09opl64");
 a.addCustToList(c);
 a.addCustToList(b);
 a.addCustToList(d);
-System.out.println(a.numOfRegisteredCustomers());
-a.printCustomerList();
-System.out.println(a.getLastName());
-System.out.println(a.getFirstName());
-System.out.println(a.getID());
-System.out.println(a.getEmployeeInfo());
-System.out.println(a.printPayCheck());
-System.out.println(a.getPhoneNumber());
-a.setCustomer(c);
-System.out.println(a.getCustomer().toString());
-*/
-System.out.println(a.scanID("23hiop"));
+//System.out.println(a.numOfRegisteredCustomers());
+//a.printCustomerList();
+//System.out.println(a.getLastName());
+//System.out.println(a.getFirstName());
+//System.out.println(a.getID());
+//System.out.println(a.getEmployeeInfo());
+//System.out.println(a.printPayCheck());
+//System.out.println(a.getPhoneNumber());
+//a.setCustomer(c);
+//System.out.println(a.getCustomer().toString());
+//System.out.println(a.scanID("23hiop"));
 
+System.out.println(a.searchCustomer("Migs Tori"));
 }
 
 

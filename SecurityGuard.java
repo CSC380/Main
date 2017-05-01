@@ -3,14 +3,17 @@ public class SecurityGuard extends Employee {
 
 private final double wage = 18.00;
 private final String mainGate = "Main Gate";
+private String [] schedule = new String[7];
 private boolean stateOfGate;
+
 private double hoursWorked, weeklyHours;
+
 private Customer customerInfo;
 private SecurityGuard sc;
 
-public SecurityGuard(String last, String first, String id, String phone) {
+public SecurityGuard(String last, String first, String id, String phone, String pw) {
 
-super(last,first,id,phone);
+super(last,first,id,phone,pw);
 }
 
 public boolean setState(boolean state){
@@ -73,13 +76,27 @@ public Customer getCustomerInfo() {
 return customerInfo;
 }
 
-public String scanLicensePlate(String licenseNum) {
+public void setSchedule(String mon, String tues, String wed, String thurs, String fri, String sat, String sun) {
 
-return null;
+schedule[0] = "Monday - " + mon;
+schedule[1] = "Tuesday - " + tues;
+schedule[2] = "Wednesday - " + wed;
+schedule[3] = "Thursday - " + thurs;
+schedule[4] = "Friday - " + fri;
+schedule[5] = "Saturday - " + sat;
+schedule[6] = "Sunday - " + sun;
+}
+
+public void displaySchedule() {
+
+for (int i = 0; i < schedule.length; i++) {
+	System.out.println(schedule[i]);
+}
+
 }
 
 public static void main(String[] args) {
-
+/*
 SecurityGuard g = new SecurityGuard("wolf", "lone", "90yftvsh", "9786254432");
 Customer c = new Customer("wolfomina", "tylon", "tywolf@gmail.com", "o98ncg78dc");
 
@@ -96,7 +113,7 @@ g.setWeeklyHours(40);
 System.out.println(g.getWeeklyHours());
 g.setState(true);
 System.out.println("The main gate is " + g.gateStatus());
-
+*/
 }
 
 }

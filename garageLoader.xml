@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Garage>
+   <Customer firstName="Terrence" lastName="Malone" emailAddress="Tmoney@Gmail.com" licensePlate="rxm-726" />
+   <Customer firstName="Fred" lastName="Jones" emailAddress="f.jones@gmail.com" licensePlate="adr-982" />
+   <Customer firstName="Harold" lastName="Reid" emailAddress="h.reid@gmail.com" licensePlate="jkk-648" />
+   <Customer firstName="Antonio" lastName="Paccione" emailAddress="a.paccs@yahoo.com" licensePate="kdl-312" />
+   <Customer firstName="Sarah" lastName="Inglesia" emailAddress="s.glesia@yahoo.com" licensePlate="kof-154" />
+   <Customer firstName="Kyla" lastName="Ferguson" emailAddress="k.fergie@yahoo.com" licensePlate="idj-315" />
+   <Customer firstName="Chris" lastName="Valentin" emailAddress="c.valentin@yahoo.com" licensePlate="odj-216" />
+   <Customer firstName="Mariah" lastName="Hasbrouk" emailAddress="m.hasbrouk@yahoo.com" licensePlate="dih-845" />
+   <Customer firstName="Trevore" lastName="Coleman" emailAddress="c.cole@yahoo.com" licensePlate="hcu-745" />
+   <Customer firstName="Lily" lastName="Martinez" emailAddress="l.martinez@yahoo.com" licensePlate="ujc-154" />
+   <Employee type="GarageManager" firstName="Mark" lastName="Jackson" idNumber="65490811" phoneNumber="646-555-5555" password="123456" />
+   <Employee type="Valet" firstName="Carl" lastName="Robinson" idNumber="65490812" phoneNumber="646-555-5545" password="123456789" />
+   <Employee type="Valet" firstName="Samuel" lastName="Pettis" idNumber="65490813" phoneNumber="646-555-4555" password="qwert" />
+   <Employee type="Valet" firstName="John" lastName="Smith" idNumber="65490814" phoneNumber="646-385-5555" password="12345678" />
+   <Employee type="Valet" firstName="Polly" lastName="Roche" idNumber="65490815" phoneNumber="646-718-5555" password="111111" />
+   <Employee type="Valet" firstName="Anne" lastName="Brown" idNumber="65490816" phoneNumber="646-555-4891" password="1234567890" />
+   <Employee type="Valet" firstName="Mary" lastName="Murphey" idNumber="65490817" phoneNumber="646-156-5555" password="1234567" />
+   <Employee type="Valet" firstName="Charlie" lastName="Carson" idNumber="65490818" phoneNumber="646-555-9473" password="password" />
+   <Employee type="Valet" firstName="Marvin" lastName="Melbourne" idNumber="65490819" phoneNumber="646-555-1532" password="123123" />
+   <Employee type="Valet" firstName="Jermey" lastName="Renner" idNumber="65490820" phoneNumber="646-203-5555" password="666666" />
+   <Employee type="Valet" firstName="Michael" lastName="Davis" idNumber="65490821" phoneNumber="646-595-5555" password="18atcskd2w" />
+   <Employee type="SecurityGuard" firstName="Donald" lastName="Harris" idNumber="65490822" phoneNumber="646-156-8455" password="google" />
+   <Employee type="SecurityGuard" firstName="Josh" lastName="Garcia" idNumber="65490824" phoneNumber="646-325-8235" password="123qwe" />
+   <Employee type="SecurityGuard" firstName="Ken" lastName="Clark" idNumber="65490825" phoneNumber="646-959-7655" password="1q2w3e4r5t" />
+   <Employee type="SecurityGuard" firstName="Mario" lastName="Martin" idNumber="65490826" phoneNumber="646-915-8365" password="123qwe" />
+   <Employee type="SecurityGuard" firstName="Bobby" lastName="Anderson" idNumber="65490827" phoneNumber="646-156-3154" password="1zxc2vbn" />
+   <Employee type="SecurityGuard" firstName="Gerald" lastName="Moore" idNumber="65490828" phoneNumber="646-264-8455" password="asdfjkl" />
+   <Employee type="SecurityGuard" firstName="Barry" lastName="Allen" idNumber="65490829" phoneNumber="646-216-2679" password="helloworld" />
+   <Employee type="SecurityGuard" firstName="Steve" lastName="Turner" idNumber="65490830" phoneNumber="646-546-2485" password="poiuyt" />
+   <Employee type="SecurityGuard" firstName="Edward" lastName="Campbell" idNumber="65490831" phoneNumber="646-764-9485" password="ytrewq" />
+   <Employee type="SecurityGuard" firstName="Adam" lastName="Green" idNumber="65490832" phoneNumber="646-231-6448" password="csc380" />
+   <Report month="March" day="10" year="2016" reportInfo="A customer complained about Valet John Smith." />
+   <Report month="June" day="13" year="2016" reportInfo="A customer complimented Security Guard Barry Allen." />
+   <Report month="July" day="3" year="2016" reportInfo="A customer complained about Security Guard Steve Turner." />
+   <Report month="July" day="25" year="2016" reportInfo="A customer complained about Valet Michael Davis." />
+   <Report month="September" day="1" year="2016" reportInfo="A customer complimented Valet John Smith." />
+   <Report month="October" day="14" year="2016" reportInfo="A request for maintinence to look at the security gate was made." />
+</Garage>
