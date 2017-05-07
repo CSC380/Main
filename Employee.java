@@ -8,6 +8,7 @@ private String lastName, firstName;
 private String idNumber;
 private String phoneNumber;
 private String password;
+private double hours;
 
 private HashMap<String, String> map = new HashMap<>();
 
@@ -62,13 +63,15 @@ public String getEmployeeInfo() {
 return "Name:  " + lastName + ", " + firstName + "\tId Number: " + idNumber + "  Phone Number: " + phoneNumber;
 }
 
-
 @Override
 public String toString() {
 
 return getEmployeeInfo();
 }
 
+public abstract String getType();
+//public abstract void setHoursWorked(double p);
+public abstract double getHoursWorked();
 public abstract String printPayCheck();
 public abstract double calculatePayCheck();
 //public abstract Customer searchCustomer(String name);

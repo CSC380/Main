@@ -36,6 +36,11 @@ public String getYear() {
 return year;
 }
 
+public String getReportCredentials() {
+
+return month + "/" + day + "/" + year;
+}
+
 public String getInfo() {
 
 return reportInfo;
@@ -44,6 +49,17 @@ return reportInfo;
 public void setReportInfo(String i) {
 
 reportInfo = i;
+}
+
+public Report searchReport(String credentials) {
+
+for (Report r : reportList) {
+	if (credentials.equals(r.getReportCredentials())) {
+		return r;
+	 }
+}
+
+return null;
 }
 
 public Report[] getReportList() {

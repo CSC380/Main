@@ -22,12 +22,17 @@ public double getWeeklyHours() {
 return weeklyHours;
 }
 
+public String getType() {
+
+return "Valet";
+}
+
 public void setHoursWorked(double hw) {
 
 hoursWorked = hw;
 }
 
-public double getHoursWorked(double ghw) {
+public double getHoursWorked() {
 
 return hoursWorked;
 }

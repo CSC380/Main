@@ -3,6 +3,7 @@ import java.util.*;
 public class GarageManager extends Employee {
 
 private final double salary = 120000;
+private double hours;
 
 private Customer customerInfo;
 private Valet valetInfo;
@@ -20,6 +21,20 @@ public GarageManager(String last, String first, String id, String phone, String 
 super(last,first,id,phone,pw);
 }
 
+public void setHoursWorked(double p) {
+
+hours = p;
+}
+
+public double getHoursWorked() {
+
+return hours;
+}
+
+public String getType() {
+
+return "GarageManager";
+}
 public boolean addReport(Report rp) {
 
 return reports.add(rp);
@@ -153,31 +168,42 @@ public String scanID(String id) {
 if (id != null) {
 	for (Employee emp: staffMembers) {
 		if (emp.getID().equals(id)) {
-			return emp.getFirstName() + " " + emp.getLastName();
+			return emp.getName();
 			}
 		}
 	}
-return "Employee not apart of the staff";
+return "Employee not a part of the staff";
 }
 
-public String searchCustomer(String name) {
+public Customer searchCustomer(String name) {
 
 for (Customer cust: numOfCustomers) {
 	if (cust.getName().equalsIgnoreCase(name)) {
-		return cust.getCustomer();
-	}
+		return cust;
+	} 
 }
-return "That customer does not exist inside the database";
+return null;
 }
 
-public String searchEmployee(String name) {
+public Employee searchEmployee(String name) {
 
 for (Employee em : staffMembers) {
 	if (em.getName().equalsIgnoreCase(name)) {
-		return em.getEmployeeInfo();
+		return em;
 	}
 }
-return "That Employee does not exist inside the database";
+return null;
+}
+
+public Report searchReport(String credentials) {
+
+for (Report r : reports) {
+	if (credentials.equals(r.getReportCredentials())) {
+		return r;
+	 }
+}
+
+return null;
 }
 
 public void setSchedule(String mon, String tues, String wed, String thurs, String fri, String sat, String sun) {

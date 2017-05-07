@@ -13,8 +13,18 @@ private Customer customer;
 private Valet valet;
 private SecurityGuard securityGuard;
 private GarageManager garageManager;
+private Employee e1;
 
 public Garage() {
+}
+
+public void setEmployee(Employee e){
+e1 = e;
+}
+
+public Employee getEmployee(){
+
+return e1;
 }
 
 public void setValet(Valet v) {
@@ -105,28 +115,30 @@ public void occupieASpot(Customer c) {
 for (int i = 0; i < spots.length; i++) {
 	if (spots[i] == null) {
 		spots[i] = c.getLicense();
+		break;
 		} 
 	}
 
 
 }
-/*public void occupieSpotsEmployee(Employee[] employees) {
 
-
-
-}
-*/
-
-public String displayOccupiedSpots() {
+public void displayOccupiedSpots() {
 
 for (int i = 0; i < spots.length; i++) {
-	if (spots[i] == null) {
-	break;
-} else {
-return "Spot " + i + " " + spots[i];
+	if (spots[i] != null) {
+	 System.out.println("Spot " + i + " " + spots[i]);
+	} 
 }
+
 }
-return "No spots are being occupied";
+
+public void occupieGarage(Customer [] c) {
+
+for (Customer cust : c) {
+	occupieASpot(cust);
+
+}
+
 }
 
 public static void main(String[] args) {
@@ -163,7 +175,7 @@ g.occupieASpot(d);
 g.occupieASpot(f);
 //g.occupieSpotsEmployee(a.getStaff());
 
-System.out.println(g.displayOccupiedSpots());
+g.displayOccupiedSpots();
 
 }
 

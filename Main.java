@@ -46,12 +46,18 @@ public class Main {
 		samsCo.setGarageManager(gms);
 		populateGMCustomers(customer,gms);
 		populateGMEmployees(valets,security,gms);
+		buildGMReports(reports,gms);
 		parkCustomerVehicle(customer,samsCo);
-		//samsCo.occupieGarage(customer);
-		//samsCo.occupieSpotsCustomer(customer);
+		samsCo.occupieGarage(customer);
 
 
 		new LoginScreen();
+
+		buildCustCombo(customer,LoginScreen.custBox);
+		buildEMPCombo(emps,LoginScreen.staffBox);
+		buildGarageCombo(customer,LoginScreen.garageSpotsTaken);
+		buildReviewReportCombo(reports,LoginScreen.comboReviewBox);
+		buildGarageOptionsCombo(LoginScreen.garageEntities);
 
 
 	 	LoginScreen.loginButton.addActionListener(new ActionListener() {
@@ -59,22 +65,29 @@ public class Main {
 		String id = LoginScreen.idText.getText();
 		char [] pw = LoginScreen.passwordText.getPassword();
 		if (loginCheck(emps,id,pw)) {
+		String loggedInName = gms.scanID(id);
+		Employee loggedON = gms.searchEmployee(loggedInName);
+			if (!loggedON.getType().equalsIgnoreCase("GarageManager")) {
+		LoginScreen.createStaffButton.setEnabled(false);
 		LoginScreen.allGUI.show(LoginScreen.controlPanel, "2");
+		LoginScreen.resetComponentsLoginScreen(LoginScreen.loginMenu);
+		}
 	}  else {
 		JOptionPane.showMessageDialog(LoginScreen.login,"Wrong idNumber and/or password.","Login Error", JOptionPane.ERROR_MESSAGE);
 		}
-
+		
 	}
 });
-
 
 		LoginScreen.confirmCreateCustomerButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 	Customer cust = new Customer(LoginScreen.lastNameTextField.getText(),LoginScreen.firstNameTextField.getText(),LoginScreen.emailTextField.getText(),LoginScreen.licenseTextField.getText());
 		if (gms.addCustToList(cust)) {
 		samsCo.addCustomerVehicle(cust);
-		//samsCo.occupieASpot(cust);
+		samsCo.occupieASpot(cust);
+		LoginScreen.garageSpotsTaken.addItem(cust.getLicense());
 JOptionPane.showMessageDialog(LoginScreen.login,"The customer has been successfully added to the database and may now park.","Customer Registered", JOptionPane.INFORMATION_MESSAGE);
+LoginScreen.resetComponentsCreateCustomer(LoginScreen.createCustomer);
 		} else {
 JOptionPane.showMessageDialog(LoginScreen.login,"Customer can not be added to database.","Authentication Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -84,20 +97,50 @@ JOptionPane.showMessageDialog(LoginScreen.login,"Customer can not be added to da
 
 		LoginScreen.searchSearchCustomerButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		String customerIdentity = gms.searchCustomer(LoginScreen.custNameTextField.getText());
-		int lg = customerIdentity.length() * 10;	
-		LoginScreen.displayCustInfo.setBounds(80,130,lg,100);	
-		LoginScreen.displayCustInfo.setText(customerIdentity);
+		Customer cIdentity = gms.searchCustomer(LoginScreen.custNameTextField.getText());
+	if (cIdentity != null) {
+		LoginScreen.searchCustNameTextField.setText(cIdentity.getName());
+		LoginScreen.searchCustEmailTextField.setText(cIdentity.getEmail());
+		LoginScreen.searchCustLicenseTextField.setText(cIdentity.getLicense());
+
+		LoginScreen.searchCustNameLabel.setVisible(true);
+		LoginScreen.searchCustNameTextField.setVisible(true);
+		LoginScreen.searchCustEmailLabel.setVisible(true);
+		LoginScreen.searchCustEmailTextField.setVisible(true);
+		LoginScreen.searchCustLicenseLabel.setVisible(true);
+		LoginScreen.searchCustLicenseTextField.setVisible(true);
+		LoginScreen.resetComponentsSearchCustomer(LoginScreen.searchCustomer);
+	}	else { 
+JOptionPane.showMessageDialog(LoginScreen.login,"Customer can not be found in database.","Alert", JOptionPane.WARNING_MESSAGE);
+
+	}
+
 		}
 });
 
 
 		LoginScreen.searchEmployeeSearchButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		String staffIdentity = gms.searchEmployee(LoginScreen.searchStaffNameTextField.getText());
-		int lg = staffIdentity.length() * 10;	
-		LoginScreen.searchDisplayStaffInfo.setBounds(80,130,lg,100);	
-		LoginScreen.searchDisplayStaffInfo.setText(staffIdentity);
+		Employee sIdentity = gms.searchEmployee(LoginScreen.searchStaffNameTextField.getText());
+	if (sIdentity != null) {
+		LoginScreen.searchEMPNameTextField.setText(sIdentity.getName());
+		LoginScreen.searchEMPIDTextField.setText(sIdentity.getID());
+		LoginScreen.searchEMPPhoneTextField.setText(sIdentity.getPhoneNumber());
+		LoginScreen.searchEMPPositionTextField.setText("");
+
+		LoginScreen.searchEMPNameLabel.setVisible(true);
+		LoginScreen.searchEMPNameTextField.setVisible(true);
+		LoginScreen.searchEMPIDLabel.setVisible(true);
+		LoginScreen.searchEMPIDTextField.setVisible(true);
+		LoginScreen.searchEMPPhoneLabel.setVisible(true);
+		LoginScreen.searchEMPPhoneTextField.setVisible(true);
+		LoginScreen.searchEMPPositionLabel.setVisible(true);
+		LoginScreen.searchEMPPositionTextField.setVisible(true);
+		LoginScreen.resetComponentsSearchEMP(LoginScreen.searchEMP);
+	} else {
+JOptionPane.showMessageDialog(LoginScreen.login,"Employee can not be found in database.","Alert", JOptionPane.WARNING_MESSAGE);
+	
+	}
 		}
 });
 
@@ -122,6 +165,7 @@ JOptionPane.showMessageDialog(LoginScreen.login,"The Staff member has been succe
 		} else {
 JOptionPane.showMessageDialog(LoginScreen.login,"Employee can not be added to database. Invalid Job Title","Field Error", JOptionPane.ERROR_MESSAGE);
 		}
+LoginScreen.resetComponentsCreateEMP(LoginScreen.createEMP);
 	}
 });
 
@@ -134,32 +178,81 @@ JOptionPane.showMessageDialog(LoginScreen.login,"The report cannot be added to t
 	Report newRep = new Report(LoginScreen.monthTextField.getText(),LoginScreen.dayTextField.getText(),LoginScreen.yearTextField.getText());
 	newRep.setReportInfo(LoginScreen.reportInformationTextField.getText());
 	gms.addReport(newRep);
+	LoginScreen.comboReviewBox.addItem(newRep.getCredentials());
 JOptionPane.showMessageDialog(LoginScreen.login,"The report has been successfully added to the database.","Report Complete", JOptionPane.INFORMATION_MESSAGE);
 		}	
+LoginScreen.resetComponentsBuildReport(LoginScreen.buildReport);
 	}
 });
 
-	LoginScreen.garageEntities.addItem("Maximum Spots");
-	LoginScreen.garageEntities.addItem("Available Space");
-	LoginScreen.garageEntities.addItem("Spots Taken");
-	LoginScreen.garageEntities.addItem("Display Occupied Spots");
-	LoginScreen.garageEntities.addItem("Garage Manager Info");
-
+	
 	LoginScreen.confirmGarageStatusButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 	if (LoginScreen.garageEntities.getSelectedItem().equals("Maximum Spots")) {
 		LoginScreen.statusOutLabel.setText(Integer.toString(samsCo.getMaxNumOfSpots()));
+//LoginScreen.resetComponentsGarageStatus(LoginScreen.garageStatus);
 	} else if (LoginScreen.garageEntities.getSelectedItem().equals("Available Space")) {
 		LoginScreen.statusOutLabel.setText(Integer.toString(samsCo.getAvailableSpots()));
 	} else if (LoginScreen.garageEntities.getSelectedItem().equals("Spots Taken")) {
 		LoginScreen.statusOutLabel.setText(Integer.toString(samsCo.spotsTaken()));
+//LoginScreen.resetComponentsGarageStatus(LoginScreen.garageStatus);
 	} else if (LoginScreen.garageEntities.getSelectedItem().equals("Display Occupied Spots")) {
-		//LoginScreen.statusOutLabel.setText(samsCo.displayOccupiedSpots());
+		LoginScreen.garageSpotsTaken.setVisible(true);
+//LoginScreen.resetComponentsGarageStatus(LoginScreen.garageStatus);
 	} else if (LoginScreen.garageEntities.getSelectedItem().equals("Garage Manager Info")) {
 		LoginScreen.statusOutLabel.setText(samsCo.getGarageManager().getEmployeeInfo());
-		}
-//System.out.println(samsCo.displayOccupiedSpots());
+//LoginScreen.resetComponentsGarageStatus(LoginScreen.garageStatus);	
 	}
+	}
+
+  });
+
+
+	LoginScreen.custBox.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		Customer cIdentity = gms.searchCustomer((String) LoginScreen.custBox.getSelectedItem());
+		LoginScreen.allCustNameTextField.setText(cIdentity.getName());
+		LoginScreen.allCustEmailTextField.setText(cIdentity.getEmail());
+		LoginScreen.allCustLicenseTextField.setText(cIdentity.getLicense());
+		
+		LoginScreen.custNameLabel.setVisible(true);
+		LoginScreen.allCustNameTextField.setVisible(true);
+		LoginScreen.custAllCustEmailLabel.setVisible(true);
+		LoginScreen.allCustEmailTextField.setVisible(true);
+		LoginScreen.custAllCustLicenseLabel.setVisible(true);
+		LoginScreen.allCustLicenseTextField.setVisible(true);
+		}
+  });
+
+	LoginScreen.staffBox.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		Employee eIdentity = gms.searchEmployee((String)LoginScreen.staffBox.getSelectedItem());
+
+		LoginScreen.allStaffNameTextField.setText(eIdentity.getName());
+		LoginScreen.allStaffIDTextField.setText(eIdentity.getID());
+		LoginScreen.allStaffPhoneTextField.setText(eIdentity.getPhoneNumber());
+		LoginScreen.allStaffPositionTextField.setText("");
+		LoginScreen.allStaffPositionTextField.setVisible(true);
+		LoginScreen.staffAllStaffNameLabel.setVisible(true);
+		LoginScreen.allStaffNameTextField.setVisible(true);
+		LoginScreen.staffAllStaffIDLabel.setVisible(true);
+		LoginScreen.allStaffIDTextField.setVisible(true);
+		LoginScreen.staffAllStaffPhoneLabel.setVisible(true);
+		LoginScreen.allStaffPhoneTextField.setVisible(true);
+		LoginScreen.allStaffPositionLabel.setVisible(true);
+		LoginScreen.resetComponentsAllCust(LoginScreen.allCust);
+		}
+  });
+
+		LoginScreen.confirmReviewReportButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		Report rIdentity = gms.searchReport((String)LoginScreen.comboReviewBox.getSelectedItem());
+
+		LoginScreen.monthReviewTextField.setText(rIdentity.getMonth());
+		LoginScreen.dayReviewTextField.setText(rIdentity.getDay());
+		LoginScreen.yearReviewTextField.setText(rIdentity.getYear());
+		LoginScreen.reportInformationReviewTextField.setText(rIdentity.getInfo());
+		}
 
   });
 
@@ -191,6 +284,8 @@ for (int i = 0; i < s.length; i++) {
 	}
 }
 
+g.addStaff(g);
+
 }
 
 public static void parkCustomerVehicle(Customer [] c, Garage g) {
@@ -198,6 +293,14 @@ public static void parkCustomerVehicle(Customer [] c, Garage g) {
 for (Customer cust : c) {
 	g.addCustomerVehicle(cust);
 	}
+}
+
+public static void buildGMReports(Report [] r, GarageManager gm) {
+
+for (Report report : r) {
+	gm.addReport(report);
+}
+
 }
 
 public static boolean loginCheck(Employee [] emp, String id, char [] input) {
@@ -224,7 +327,51 @@ for (int i = 0; i < emp.length; i++) {
  return isCorrect;
 }
 
+public static void buildCustCombo(Customer [] cust, JComboBox cb) {
 
+for (Customer c : cust) {
+	cb.addItem(c.getName());
+}
+	cb.setSelectedIndex(-1);
+}
+
+public static void buildEMPCombo(Employee [] emp, JComboBox cb) {
+
+for (Employee e : emp) {
+	cb.addItem(e.getName());
+}
+	cb.setSelectedIndex(-1);
+
+}
+
+public static void buildGarageCombo(Customer [] cust, JComboBox cb) {
+
+for (Customer c : cust) {
+	cb.addItem(c.getLicense());
+}
+	cb.setSelectedIndex(-1);
+
+}
+
+public static void buildReviewReportCombo(Report [] r, JComboBox cb) {
+
+for (Report report : r) {
+	cb.addItem(report.getReportCredentials());
+}
+	cb.setSelectedIndex(-1);
+
+}
+
+public static void buildGarageOptionsCombo(JComboBox cb) {
+
+cb.addItem("Maximum Spots");
+cb.addItem("Available Space");
+cb.addItem("Spots Taken");
+cb.addItem("Display Occupied Spots");
+cb.addItem("Garage Manager Info");
+
+
+}
 // stop clock
 // create new report
 // create new customer

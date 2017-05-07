@@ -30,16 +30,24 @@ opening = new Garage();
 } 
 	else if (qName.equalsIgnoreCase("Customer")) {
 customer = new Customer(attributes.getValue("firstName"),attributes.getValue("lastName"),attributes.getValue("emailAddress"),attributes.getValue("licensePlate"));
+double p = Double.parseDouble(attributes.getValue("pay"));
+customer.setPay(p);
 }
 	 else if (qName.equalsIgnoreCase("Employee")) {
 	if (attributes.getValue("type").equals("GarageManager")) {
 gManage = new GarageManager(attributes.getValue("firstName"), attributes.getValue("lastName"), attributes.getValue("idNumber"), attributes.getValue("phoneNumber"),attributes.getValue("password"));
+//double h = Double.parseDouble(attributes.getValue("hours"));
+//gManage.setHoursWorked(h);
 emps.add(gManage);
 }	else if (attributes.getValue("type").equals("Valet")) {
 valet = new Valet(attributes.getValue("firstName"), attributes.getValue("lastName"), attributes.getValue("idNumber"), attributes.getValue("phoneNumber"),attributes.getValue("password"));
+//double h = Double.parseDouble(attributes.getValue("hours"));
+//valet.setHoursWorked(h);
 emps.add(valet);
 }	else if (attributes.getValue("type").equals("SecurityGuard")) {
 sg = new SecurityGuard(attributes.getValue("firstName"), attributes.getValue("lastName"), attributes.getValue("idNumber"), attributes.getValue("phoneNumber"),attributes.getValue("password"));
+//double h = Double.parseDouble(attributes.getValue("hours"));
+//sg.setHoursWorked(h);
 emps.add(sg);
 }
 }

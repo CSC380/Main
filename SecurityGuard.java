@@ -21,6 +21,11 @@ public boolean setState(boolean state){
 return stateOfGate = state;
 }
 
+public String getType() {
+
+return "SecurityGuard";
+}
+
 // ternary operator, result = testCondition ? value1 : value2
 public String gateStatus() {
 
