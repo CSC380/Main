@@ -1,9 +1,8 @@
-import java.text.DecimalFormat;
+
 import java.util.HashMap;
 
 public abstract class Employee {
 
-DecimalFormat f = new DecimalFormat("#,###.00");
 private String lastName, firstName;
 private String idNumber;
 private String phoneNumber;
