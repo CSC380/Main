@@ -2,8 +2,6 @@ import java.util.*;
 
 public class GarageManager extends Employee {
 
-private final double salary = 120000;
-private double hours;
 
 private Customer customerInfo;
 private Valet valetInfo;
@@ -14,22 +12,14 @@ private List<Customer> numOfCustomers = new ArrayList<>();
 private List<Employee> numOfEmployeeParking = new ArrayList<>();
 private List<Employee> staffMembers = new ArrayList<>();
 private List<Report> reports = new ArrayList<>();
-private String [] schedule = new String[7];
+
 
 public GarageManager(String last, String first, String id, String phone, String pw) {
 
 super(last,first,id,phone,pw);
 }
 
-public void setHoursWorked(double p) {
 
-hours = p;
-}
-
-public double getHoursWorked() {
-
-return hours;
-}
 
 public String getType() {
 
@@ -92,15 +82,6 @@ Employee[] temp = staffMembers.toArray(new Employee[staffMembers.size()]);
 return temp;
 }
 
-public double calculatePayCheck() {
-
-return salary / 26;
-}
-
-public String printPayCheck() {
-
-return f.format(calculatePayCheck());
-}
 
 public void setCustomer(Customer c) {
 
@@ -206,22 +187,6 @@ for (Report r : reports) {
 return null;
 }
 
-public void setSchedule(String mon, String tues, String wed, String thurs, String fri, String sat, String sun) {
-
-schedule[0] = "Monday - " + mon;
-schedule[1] = "Tuesday - " + tues;
-schedule[2] = "Wednesday - " + wed;
-schedule[3] = "Thursday - " + thurs;
-schedule[4] = "Friday - " + fri;
-schedule[5] = "Saturday - " + sat;
-schedule[6] = "Sunday - " + sun;
-}
-
-public void displaySchedule() {
-
-for (int i = 0; i < schedule.length; i++) {
-	System.out.println(schedule[i]);
-}
 
 }
 public static void main(String[] args) {
