@@ -19,21 +19,7 @@ public class GarageManagerTest {
         assertArrayEquals("checking for 2 Customers to be in list", cust, g1.listOfCustomers());
     }
 
-	@Test
-	public void calculatePayCheckTest() {
-
-	GarageManager g1 = new GarageManager("Monkey","Luffy","5420817","6467335555");
-	double pay = 4615.38;
-	assertEquals("Checking for pay amount to be accuarate as of to 2 decimal places",pay,g1.calculatePayCheck(),.01);
-	}
-
-	@Test
-	public void printPayCheckTest() {
-
-	GarageManager g1 = new GarageManager("Monkey","Luffy","5420817","6467335555");
-	String payCheck = "4,615.38";	
-	assertEquals("Checking for string output match",payCheck,g1.printPayCheck());
-	}
+	
 
 /* 	@Test
 	public void setCustomerTest() {
